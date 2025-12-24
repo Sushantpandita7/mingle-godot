@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ObjectVisual" load_steps=3 format=3 uid="uid://dvkcn368w74c3"]
+
+[ext_resource type="Script" uid="uid://ucbklfx020fv" path="res://scripts/object_visual.gd" id="1_s3ynm"]
+[ext_resource type="Texture2D" uid="uid://by1allojkglie" path="res://assets/Picture17.png" id="2_sk11b"]
+
+[resource]
+script = ExtResource("1_s3ynm")
+texture = ExtResource("2_sk11b")
+scale = Vector2(0.25, 0.25)
+metadata/_custom_type_script = "uid://ucbklfx020fv"

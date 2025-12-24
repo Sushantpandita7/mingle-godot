@@ -7,6 +7,8 @@ extends Node
 @export var object_min_speed := 100
 @export var object_max_speed := 150.0
 
+@export var spawn_visuals: Array[ObjectVisual]
+
 var screen_size: Vector2
 
 func _ready():
@@ -15,17 +17,26 @@ func _ready():
 	spawn_player()
 	spawn_objects()
 
+	#if spawn_visuals.size() != object_count:
+		#push_error(
+			#"Object count (%d) does not match spawn_visuals size (%d)"
+			#% [object_count, spawn_visuals.size()]
+		#)
+		#return
+
 func spawn_player():
 	var player = player_scene.instantiate()
 	player.position = screen_size * 0.5
 	add_child(player)
 
 func spawn_objects():
-	for i in object_count:
+	for i in spawn_visuals.size():
 		var obj = object_scene.instantiate()
 		obj.position = random_position()
 		
-		add_child(obj)
+		obj.visual = spawn_visuals[i]
+
+		$Objects.add_child(obj)
 		
 		# Random initial movement
 		var dir = Vector2(
