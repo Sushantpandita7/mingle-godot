@@ -4,6 +4,8 @@ extends Area2D
 var screen_size
 var overlapping_objects: Array[RigidBody2D] = []
 
+@export var visual: ObjectVisual
+
 signal collision
 
 func _ready():
@@ -12,6 +14,8 @@ func _ready():
 	
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	
+	apply_visual()
 
 func _on_body_entered(body):
 	if body is RigidBody2D:
@@ -50,8 +54,22 @@ func merge_object():
 		return
 	# Pick closest object (important when multiple overlap)
 	var target := get_closest_object()
-	if is_instance_valid(target):
-		target.queue_free()
+	if not is_instance_valid(target):
+		return
+	
+	if target.visual != visual:
+		return	
+	overlapping_objects.erase(target)
+	var merged_visual: ObjectVisual = target.visual
+
+	target.queue_free()
+	
+	var main := get_parent().get_parent()
+	main.remaining_visuals.erase(merged_visual)
+
+	if main.remaining_visuals.size() > 0:
+		switch_to_new_visual()
+
 		
 func get_closest_object() -> RigidBody2D:
 	
@@ -74,3 +92,17 @@ func cleanup_overlaps():
 		func(obj):
 			return is_instance_valid(obj)
 	)
+
+func apply_visual():
+	if visual:
+		$Sprite2D.texture = visual.texture
+		$Sprite2D.scale = visual.scale
+
+func switch_to_new_visual():
+	var main := get_parent().get_parent()
+
+	if main.remaining_visuals.is_empty():
+		return
+
+	visual = main.remaining_visuals.pick_random()
+	apply_visual()

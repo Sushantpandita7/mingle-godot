@@ -9,11 +9,15 @@ extends Node
 
 @export var spawn_visuals: Array[ObjectVisual]
 
+var remaining_visuals: Array[ObjectVisual] = []
+
 var screen_size: Vector2
 
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
-	
+
+	remaining_visuals = spawn_visuals.duplicate()
+
 	spawn_player()
 	spawn_objects()
 
@@ -25,9 +29,14 @@ func _ready():
 		#return
 
 func spawn_player():
+
 	var player = player_scene.instantiate()
 	player.position = screen_size * 0.5
-	add_child(player)
+
+	player.visual = spawn_visuals.pick_random()
+	player.apply_visual()
+
+	$PlayerSpawn.add_child(player)
 
 func spawn_objects():
 	for i in spawn_visuals.size():
