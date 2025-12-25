@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="ObjectVisual" load_steps=3 format=3 uid="uid://cm1pgb15wfopx"]
 
 [ext_resource type="Script" uid="uid://ucbklfx020fv" path="res://scripts/object_visual.gd" id="1_5n5r6"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kygpu"]
-load_path = "res://.godot/imported/Picture18.png-16c9329a11a8326ac7097d0a2929bd1f.ctex"
+[ext_resource type="Texture2D" uid="uid://b3wilv6geh6ii" path="res://assets/black/Picture9.png" id="2_5n5r6"]
 
 [resource]
 script = ExtResource("1_5n5r6")
-texture = SubResource("CompressedTexture2D_kygpu")
+texture = ExtResource("2_5n5r6")
 scale = Vector2(0.25, 0.25)
 metadata/_custom_type_script = "uid://ucbklfx020fv"

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 var screen_size: Vector2
+@export var move_speed = 120
 
 @export var texture: Texture2D:
 	set(value):
@@ -15,11 +16,25 @@ var screen_size: Vector2
 
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
-
+	
+	lock_rotation = true
+	rotation = 0.0
+	angular_velocity = 0.0
+		
 	if texture:
 		$Sprite2D.texture = texture
 
 func _physics_process(_delta):
+	
+	rotation = 0.0
+	angular_velocity = 0.0
+	
+	if linear_velocity.length() > 0:
+		linear_velocity = linear_velocity.normalized() * move_speed
+
+	handle_screen_bounce()	
+
+func handle_screen_bounce():
 	var pos = position
 	var vel = linear_velocity
 	

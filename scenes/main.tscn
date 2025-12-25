@@ -17,6 +17,13 @@ player_scene = ExtResource("1_o5qli")
 object_scene = ExtResource("3_sugp2")
 spawn_visuals = Array[ExtResource("4_85g3d")]([ExtResource("9_a8y0u"), ExtResource("8_trceg"), ExtResource("7_eb6dy"), ExtResource("6_ya4ey"), ExtResource("5_choun")])
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="PlayerSpawn" type="Node2D" parent="."]
 
 [node name="Objects" type="Node2D" parent="."]
