@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ya1duwi81uua"]
+[gd_scene load_steps=11 format=3 uid="uid://ya1duwi81uua"]
 
 [ext_resource type="Script" uid="uid://ckq32m66gk8q6" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://hlj7jg2oep26" path="res://scenes/player.tscn" id="1_o5qli"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://cc43b5nitgxdg" path="res://visuals/pentagon.tres" id="7_eb6dy"]
 [ext_resource type="Resource" uid="uid://dvkcn368w74c3" path="res://visuals/rhombiod.tres" id="8_trceg"]
 [ext_resource type="Resource" uid="uid://cgbvs34kvke3m" path="res://visuals/triangle.tres" id="9_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://cb7di0wpo8i3j" path="res://scenes/hud.tscn" id="10_choun"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0wfyh")
@@ -19,3 +20,5 @@ spawn_visuals = Array[ExtResource("4_85g3d")]([ExtResource("9_a8y0u"), ExtResour
 [node name="PlayerSpawn" type="Node2D" parent="."]
 
 [node name="Objects" type="Node2D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("10_choun")]

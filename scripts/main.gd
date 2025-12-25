@@ -20,6 +20,9 @@ func _ready():
 
 	spawn_player()
 	spawn_objects()
+	
+	$HUD/Remaining.show()
+	$HUD/TimeLeft.show()
 
 	#if spawn_visuals.size() != object_count:
 		#push_error(
