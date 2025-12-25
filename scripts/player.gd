@@ -64,9 +64,10 @@ func merge_object():
 
 	target.queue_free()
 	
-	
 	var main := get_parent().get_parent()
 	main.remaining_visuals.erase(merged_visual)
+
+	main.on_object_merged() 
 
 	if main.remaining_visuals.size() > 0:
 		switch_to_new_visual()

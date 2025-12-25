@@ -24,8 +24,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="HUD" parent="." instance=ExtResource("10_choun")]
+
 [node name="PlayerSpawn" type="Node2D" parent="."]
 
 [node name="Objects" type="Node2D" parent="."]
-
-[node name="HUD" parent="." instance=ExtResource("10_choun")]

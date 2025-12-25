@@ -25,7 +25,8 @@ var direction := Vector2.ZERO
 @export var drift_multiplier := 1
 @export var boost_multiplier := 2
 
-var bounds_margin := 20.0
+var bounds_margin_x := 20.0
+var bounds_margin_y := 80.0
 
 
 func _ready():
@@ -100,22 +101,22 @@ func pick_next_state():
 func handle_screen_bounce():
 	var bounced := false
 	var pos := position
-
-	if pos.x < bounds_margin:
-		pos.x = bounds_margin
+	
+	if pos.x < bounds_margin_x:
+		pos.x = bounds_margin_x
 		direction.x = abs(direction.x)
 		bounced = true
-	elif pos.x > screen_size.x - bounds_margin:
-		pos.x = screen_size.x - bounds_margin
+	elif pos.x > screen_size.x - bounds_margin_x:
+		pos.x = screen_size.x - bounds_margin_x
 		direction.x = -abs(direction.x)
 		bounced = true
 
-	if pos.y < bounds_margin:
-		pos.y = bounds_margin
+	if pos.y < bounds_margin_y:
+		pos.y = bounds_margin_y
 		direction.y = abs(direction.y)
 		bounced = true
-	elif pos.y > screen_size.y - bounds_margin:
-		pos.y = screen_size.y - bounds_margin
+	elif pos.y > screen_size.y - bounds_margin_y:
+		pos.y = screen_size.y - bounds_margin_y
 		direction.y = -abs(direction.y)
 		bounced = true
 

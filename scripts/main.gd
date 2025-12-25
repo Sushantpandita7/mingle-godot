@@ -1,9 +1,13 @@
 extends Node
 
+enum GameState { WAITING, PLAYING, WIN, LOSE }
+var state := GameState.WAITING
+
+@onready var hud := $HUD
+
 @export var player_scene: PackedScene
 @export var object_scene: PackedScene
 
-@export var object_count := 5
 @export var object_min_speed := 100
 @export var object_max_speed := 150.0
 
@@ -16,40 +20,26 @@ var screen_size: Vector2
 @export var level_time := 60.0
 var time_left := 0.0
 
-@onready var hud := $HUD
-
 func _process(delta):
-	if time_left <= 0:
+	if state != GameState.PLAYING:
 		return
+
 	time_left -= delta
 	hud.set_time(time_left)
-	hud.set_remaining($Objects.get_child_count())
-	
-	#if time_left <= 0:
-		#on_time_up()
+
+	if time_left <= 0:
+		check_lose_condition()
 
 func _ready():
 	
+	state = GameState.WAITING
+
 	screen_size = get_viewport().get_visible_rect().size
 
-	remaining_visuals = spawn_visuals.duplicate()
+	hud.start_pressed.connect(start_level)
 
-	spawn_player()
-	spawn_objects()
-	
-	time_left = level_time
-	hud.set_remaining($Objects.get_child_count())
-	hud.set_time(time_left)
-	
-	$HUD/Remaining.show()
-	$HUD/TimeLeft.show()
-
-	#if spawn_visuals.size() != object_count:
-		#push_error(
-			#"Object count (%d) does not match spawn_visuals size (%d)"
-			#% [object_count, spawn_visuals.size()]
-		#)
-		#return
+	hud.set_remaining(0)
+	hud.set_time(level_time)
 
 func spawn_player():
 
@@ -91,4 +81,32 @@ func random_position() -> Vector2:
 	)
 
 func on_object_merged():
+	hud.set_remaining(remaining_visuals.size())
+
+	if remaining_visuals.is_empty():
+		trigger_win()
+
+func start_level():
+	state = GameState.PLAYING
+
+	remaining_visuals = spawn_visuals.duplicate()
+
+	spawn_player()
+	spawn_objects()
+
+	time_left = level_time
 	hud.set_remaining($Objects.get_child_count())
+	hud.set_time(time_left)
+	
+func check_lose_condition():
+	if $Objects.get_child_count() > 0:
+		trigger_lose()
+		
+func trigger_win():
+	state = GameState.WIN
+	hud.show_message("YOU WIN")
+	$PlayerSpawn.hide()
+
+func trigger_lose():
+	state = GameState.LOSE
+	hud.show_message("TIME UP")

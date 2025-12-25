@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb7di0wpo8i3j"]
+[gd_scene load_steps=3 format=3 uid="uid://cb7di0wpo8i3j"]
 
 [ext_resource type="Script" uid="uid://4utudktajus4" path="res://scenes/hud.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://befu1j3m4pw1f" path="res://assets/black/logo.png" id="2_oo0fn"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_ahhtf")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(240, 37)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_oo0fn")
 
 [node name="Remaining" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -32,9 +38,9 @@ anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -83.0
-offset_top = 11.0
+offset_top = 10.0
 offset_right = -10.0
-offset_bottom = 34.0
+offset_bottom = 33.0
 grow_horizontal = 0
 text = "Time Left"
 horizontal_alignment = 1
@@ -47,5 +53,35 @@ offset_top = 33.0
 offset_right = 453.0
 offset_bottom = 56.0
 text = "60"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 223.0
+offset_right = 100.0
+offset_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+
+[node name="Message" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -25.0
+offset_right = 100.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
