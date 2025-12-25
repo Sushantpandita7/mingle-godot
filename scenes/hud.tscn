@@ -12,7 +12,17 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Remaining"
+text = "Merges Left"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RemainingValue" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 34.0
+offset_top = 33.0
+offset_right = 74.0
+offset_bottom = 56.0
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -27,5 +37,15 @@ offset_right = -10.0
 offset_bottom = 34.0
 grow_horizontal = 0
 text = "Time Left"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLeftValue" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 413.0
+offset_top = 33.0
+offset_right = 453.0
+offset_bottom = 56.0
+text = "60"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -64,6 +64,7 @@ func merge_object():
 
 	target.queue_free()
 	
+	
 	var main := get_parent().get_parent()
 	main.remaining_visuals.erase(merged_visual)
 
