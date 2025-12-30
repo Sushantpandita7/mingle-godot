@@ -62,6 +62,9 @@ func merge_object():
 	overlapping_objects.erase(target)
 	var merged_visual: ObjectVisual = target.visual
 
+	$MergeSound.pitch_scale = randf_range(0.8, 2)
+	$MergeSound.play()
+
 	target.queue_free()
 	
 	var main := get_parent().get_parent()
